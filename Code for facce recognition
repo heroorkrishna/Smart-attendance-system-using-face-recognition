@@ -43,3 +43,58 @@ faces = faceCascade.detectMultiScale(gray, 1.2,5)
 for(x,y,w,h) in faces:
 # Create rectangle around the face
 cv2.rectangle(im, (x-20,y-20), (x+w+20,y+h+20), (0,255,0), 4)
+# Recognize the face belongs to which ID
+Id,i= recognizer.predict(gray[y:y+h,x:x+w])
+print(i)
+print(Id)
+if i < 65:
+sample=sample+1
+# Check the ID if exist
+if(Id == 1 and take ):
+take =0
+count1=1
+Id = “chetan”
+print(‘Take Attendance
+‘) lecture=1
+##
+sample =0
+time.sleep(20)
+#If not exist, then it is Unknown
+elif(Id == 2):
+count4=1
+Id = “”
+Id1=Id
+elif(Id == 3):
+count3=1
+Id = “”
+Id2=Id
+elif(Id == 4):
+count5=1
+Id = “”
+Id3=Id
+else:
+print(Id)
+Id = “Unknown”
+# Put text describe who is in the picture
+cv2.rectangle(im, (x-22,y-90), (x+w+22, y-22), (0,255,0), -1)
+cv2.putText(im, str(Id), (x,y-40), font, 2, (255,255,255), 3)
+# Display the video frame with the bounded rectangle
+cv2.imshow(‘im’,im)
+# If ‘q’ is pressed, close program
+if cv2.waitKey(10) & 0Xff == ord(‘q’):
+break
+if lecture == 1 or lecture == 2 or lecture == 3:
+if sample > 50:
+sample =0
+f=open(“Database.txt”, ‘a’)
+if lecture == 1 and count4 == 1 :
+f.write(str(now)+’\t’+”chetan”+’\t’
++str(count4)+’\t’+str(Id)+’\n’) if lecture == 1 and count3 == 1 :
+f.write(str(now)+’\t’+”chetan”+’\t’
++str(count3)+’\t’+str(Id2)+’\n’)
+# #if lecture == 1 and count1 == 1 :
+## f.write(str(now)+’\t’+”chetan”+’\t’
++str(count1)+’\t’+str(Id)+’\n’) f.close()
+break
+# Stop the camera
+cam.release()
